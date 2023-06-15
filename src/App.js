@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import getQuest from "./api/getQuest";
+import GratingPage from "./components/GratingPage";
+import QuestPage from "./components/QuestPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [questions, setQuestions] = useState([]);
+	
+
+
+	useEffect(() => {
+		const getQuestion = async () => {
+			const response = await getQuest();
+			setQuestions(response);
+		};
+		getQuestion();
+	},[]);
+
+
+
+
+	
+	return (
+		<div className="App">
+			<img className="bg-top" src="./imagis/top.png" alt="bg" />
+			<img className="bg-bottom" src="./imagis/bottom.png" alt="bg" />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<GratingPage />} />
+					<Route
+						path="/QuestPage"
+						element={<QuestPage questions={questions} key={questions.id}/>}
+					/>
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;
