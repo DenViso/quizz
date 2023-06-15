@@ -1,44 +1,50 @@
 // import Quest from "./Quest";
 import {useState} from "react";
+import {Link} from "react-router-dom";
 const QuestPage = ({ questions }) => {
 	const [choosen, setChoosen] = useState([]);
+	const [correct, setCorrect] = useState(0);
 
 	const chooseAnswer = (answer) => {
-		setChoosen([...choosen, answer]);
+		if (answer) {
+			setChoosen([...choosen, answer]);
+		}
+		 if(questions.map(q => q.answer.map(a => a.isTrue))===choosen){
+							 
+		 }
+
 	};
-
-
-	// const chooseIsTrue = () => {
-	// 	if (choosen[0].length === undefined) {
-	// 		return choosen[0].isTrue;
-	// 	}
-	// 	if (choosen[0].isTrue === true) {
-	// 		return "green";
-	// 	} else if (choosen[0].isTrue === false) {
-	// 		return "red";
-	// 	} else {
-	// 		return "answer";
-	// 	}
-	// };
 	
 
 
-	console.log(choosen[i].isTrue);
-	console.log(choosen);
+	console.log(choosen);////this
+	// console.log(answer);
+	console.log(correct);
+	console.log(questions.map(q => q.answer));
+	console.log(questions.map(q => q.answer.map(a => a.isTrue)));
+	// console.log(questions[0].answer);
+	
+	
+
+	
+	
+
+
+
 	return (
 		<div className="wrapper">
 		
-				{questions.map((q) => {
+				{questions.map((q, index) => {
 					return(
-					<div className="section">
+					<div className="section" key ={index}>
 						<h2 className="question">{q.question}</h2>
 						<div className="anwer-block">
-							{q.answer.map((a) => {
+							{q.answer.map((a,index) => {
 								return (
-									<button
+									<button key ={index}
 										onClick={() => chooseAnswer(a)}
-										className="answer"
-										key={a.id}>
+										className="answer "
+										>
 										{a.answer}
 									</button>
 								);
@@ -48,10 +54,11 @@ const QuestPage = ({ questions }) => {
 					</div>
 					);
 				 })} 
-			
-			<button onClick={()=>console.log("1")} className="g-but">
+			<button   className="g-but">
 				Check answers
 			</button>
+			<Link to="/" className="g-but">New Quizzical</Link>
+			
 		</div>
 	);
 };

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getQuest = async () => {
-	const response = await axios.get("https://opentdb.com/api.php?amount=5");
+	const response = await axios.get("https://opentdb.com/api.php?amount=1");
 
 	const data = response.data.results;
 	return data.map((q) => {
@@ -10,7 +10,7 @@ const getQuest = async () => {
 			answer: [
 				{
 					answer: q.correct_answer,
-					isTrurue: true,
+					isTrue: true,
 				},
 				...q.incorrect_answers.map((a) => {
 					return {

@@ -7,7 +7,7 @@ import QuestPage from "./components/QuestPage";
 function App() {
 	const [questions, setQuestions] = useState([]);
 	
-
+	
 
 	useEffect(() => {
 		const getQuestion = async () => {
@@ -30,7 +30,7 @@ function App() {
 					<Route path="/" element={<GratingPage />} />
 					<Route
 						path="/QuestPage"
-						element={<QuestPage questions={questions} key={questions.id}/>}
+						element={<QuestPage questions={questions} key={questions.id} />}
 					/>
 				</Routes>
 			</BrowserRouter>
