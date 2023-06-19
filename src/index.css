@@ -130,9 +130,6 @@ font-style: normal;
 font-weight: 800;
 font-size: 20px;
 line-height: 19px;
-/* identical to box height */
-
-
 
 }  
 
@@ -147,7 +144,7 @@ letter-spacing: 0.5px;
 text-align: center;
 
 color: #293264;
-
+background: rgb(111, 111, 111);
 border: 0.794239px solid #4D5B9E;
 border-radius: 7.94239px;
 padding: 5px 9px;
@@ -173,4 +170,23 @@ padding: 5px 9px;
 }
 .red{
   background: rgb(225, 54, 6);
+}
+
+.new-game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+.new-game>span{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 62px;
+  width: fit-content;
+  height: 70px;
+  background-color: #528aaf5c;
+  color: #fff;
+  text-align: center;
+  border-radius: 15px;
+  padding: 5px;
 }

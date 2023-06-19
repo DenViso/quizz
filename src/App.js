@@ -1,28 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import getQuest from "./api/getQuest";
 import GratingPage from "./components/GratingPage";
 import QuestPage from "./components/QuestPage";
 
 function App() {
-	const [questions, setQuestions] = useState([]);
-	
-
-
-	
-
-	useEffect(() => {
-		const getQuestion = async () => {
-			const response = await getQuest();
-			setQuestions(response);
-		};
-		getQuestion();
-	},[]);
-
-
-
-
-	
 	return (
 		<div className="App">
 			<img className="bg-top" src="./imagis/top.png" alt="bg" />
@@ -30,10 +10,7 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<GratingPage />} />
-					<Route
-						path="/QuestPage"
-						element={<QuestPage setQuestions = {setQuestions} questions={questions} key={questions.id}  />}
-					/>
+					<Route path="/QuestPage" element={<QuestPage />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
