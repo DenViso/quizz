@@ -12,6 +12,7 @@ const GratingPage = () => {
 					</Link>
 				</div>
 			</div>
+			<p className="created">Created by <b>itdeniro00@gmail.com</b></p>
 		</div>
 	);
 };
