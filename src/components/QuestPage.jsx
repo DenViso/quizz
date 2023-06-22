@@ -1,8 +1,9 @@
-// import Quest from "./Quest";
 import { useState, useEffect } from "react";
 import getQuest from "../api/getQuest";
-// import { Link } from "react-router-dom";
-// import he from "he";
+import { chooseCat } from "../components/GratingPage";
+import {decode} from"html-entities";
+import { Link } from "react-router-dom";
+
 
 const QuestPage = () => {
 	const [questions, setQuestions] = useState([]);
@@ -10,6 +11,7 @@ const QuestPage = () => {
 	const [trueAnswer, setTrueAnswer] = useState(Array(3).fill(undefined));
 	const [userAnswer, setUserAnswer] = useState(Array(3).fill(undefined));
 	const [count, setCount] = useState(0);
+
 
 	useEffect(() => {
 		const getQuestion = async () => {
@@ -32,10 +34,11 @@ const QuestPage = () => {
 	};
 
 	const checkAnswers = () => {
-		if (userAnswer.every((answer) => answer === undefined)) {
-			return setShowAnswers(false);
+		
+				if (userAnswer.every((answer) => answer !== undefined)) {
+			return setShowAnswers(true);
 		} else {
-			setShowAnswers(true);
+			setShowAnswers(false);
 		}
 	};
 
@@ -62,6 +65,9 @@ const QuestPage = () => {
 	}, [questions]);
 
 	const selectUserAnswer = (text, index) => {
+		if (showAnswers) {
+			return;
+		}
 		const newUserAnswer = [...userAnswer];
 		newUserAnswer[index] = text;
 		setUserAnswer(newUserAnswer);
@@ -80,14 +86,12 @@ const QuestPage = () => {
 			return userAnswer[indexQuestion] === answer ? "answer" : "answer-res";
 		}
 	};
-	
-
 	return (
 		<div className="wrapper">
 			{questions.map((q, indexQuestion) => {
 				return (
 					<div className="section" key={indexQuestion}>
-						<h2 className="question"> {q.question} </h2>
+						<h2 className="question"> {decode(q.question)}</h2>
 
 						<div className="anwer-block">
 							{q.answer.map((a, index) => {
@@ -96,7 +100,7 @@ const QuestPage = () => {
 										key={index}
 										onClick={() => selectUserAnswer(a.answer, indexQuestion)}
 										className={stylingButton(indexQuestion, a.answer)}>
-										{a.answer}
+										{decode(a.answer)}
 									</button>
 								);
 							})}
@@ -110,8 +114,9 @@ const QuestPage = () => {
 					<button onClick={() => playAgain()} className="g-but">
 						New Quizzical
 					</button>
+					<Link to ="/"><button className="g-but">Back</button></Link>
 
-					<span>You scored {count}/5 correct answers </span>
+					<span>You scored {count}/{questions.length} correct answers </span>
 				</div>
 			) : (
 				<button onClick={(index) => checkAnswers(index)} className="g-but">
@@ -123,14 +128,3 @@ const QuestPage = () => {
 };
 export default QuestPage;
 
-{
-	/* {const htmlDecode = (q.question) => {
-							doc = new DOMParser().parseFromString(q.question, "text/html")
-									return doc.documentElement.textContent}}  */
-}
-{
-	/* dangerouslySetInnerHTML={__html: q.question}  */
-}
-{
-	/* {he.decode({q.question})} */
-}

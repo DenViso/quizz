@@ -1,8 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import GratingPage from "./components/GratingPage";
 import QuestPage from "./components/QuestPage";
 
 function App() {
+
+
+		
+
+
 	return (
 		<div className="App">
 			<img className="bg-top" src="./imagis/top.png" alt="bg" />
