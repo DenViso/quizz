@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 
 
 
-const GratingPage = () => {
-	const [category, setCategory] = useState([]);
-	const [chooseCat, setChooseCat] = useState(9);
+const GratingPage = ({categoryChoosen}) => {
 
+
+	const [category, setCategory] = useState([]);
+	
 	const getByCategory = async () => {
 		const response = await getCategory();
 		setCategory(response);
@@ -15,12 +16,6 @@ const GratingPage = () => {
 	useEffect(() => {
 		getByCategory();
 	}, []);
-
-	const categoryChoosen = (e) => {
-		setChooseCat(e);
-	};
-	
-	console.log(chooseCat);
 
 	return (
 		<div className="wrapper">
@@ -55,6 +50,6 @@ const GratingPage = () => {
 		</div>
 	);
 };
-export var chooseCat = chooseCat;
- console.log(chooseCat);
+
+
 export default GratingPage;

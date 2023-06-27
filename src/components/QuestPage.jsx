@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import getQuest from "../api/getQuest";
-import { chooseCat } from "../components/GratingPage";
+// import { chooseCat } from "../components/GratingPage";
 import {decode} from"html-entities";
 import { Link } from "react-router-dom";
 
 
-const QuestPage = () => {
+const QuestPage = ({chooseCat}) => {
 	const [questions, setQuestions] = useState([]);
 	const [showAnswers, setShowAnswers] = useState(false);
 	const [trueAnswer, setTrueAnswer] = useState(Array(3).fill(undefined));
@@ -15,14 +15,14 @@ const QuestPage = () => {
 
 	useEffect(() => {
 		const getQuestion = async () => {
-			const response = await getQuest();
+			const response = await getQuest(chooseCat);
 			setQuestions(response);
 		};
 		getQuestion();
-	}, []);
+	}, [chooseCat]);
 	const playAgain = () => {
 		const getQuestion = async () => {
-			const response = await getQuest();
+			const response = await getQuest(chooseCat);
 			setQuestions(response);
 		};
 		getQuestion();

@@ -1,13 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import {useState} from 'react';
 import GratingPage from "./components/GratingPage";
 import QuestPage from "./components/QuestPage";
 
 function App() {
+	const [chooseCat, setChooseCat] = useState(9);
 
+	const categoryChoosen = (e) => {
+		setChooseCat(e);
+	};
+	
 
-		
-
+console.log(chooseCat);
 
 	return (
 		<div className="App">
@@ -15,8 +19,8 @@ function App() {
 			<img className="bg-bottom" src="./imagis/bottom.png" alt="bg" />
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<GratingPage />} />
-					<Route path="/QuestPage" element={<QuestPage />} />
+					<Route path="/" element={<GratingPage  chooseCat={chooseCat} categoryChoosen = {categoryChoosen}/>} />
+					<Route path="/QuestPage" element={<QuestPage setChoosenCat = {setChooseCat} />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
