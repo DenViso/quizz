@@ -2,13 +2,9 @@ import { Link } from "react-router-dom";
 import getCategory from "../api/getCategory";
 import { useState, useEffect } from "react";
 
-
-
-const GratingPage = ({categoryChoosen}) => {
-
-
+const GratingPage = ({ categoryChoosen,chooseCat }) => {
 	const [category, setCategory] = useState([]);
-	
+
 	const getByCategory = async () => {
 		const response = await getCategory();
 		setCategory(response);
@@ -32,10 +28,10 @@ const GratingPage = ({categoryChoosen}) => {
 						<div className="cat">
 							{category.map((cat) => {
 								return (
-									<button
-										className="g-but-cat"
-										key={cat.id}
-										onClick={() => categoryChoosen(cat.id)}>
+									<button	
+									className={chooseCat === cat.id ? "x-but-cat" : "g-but-cat"} 
+									key={cat.id}	
+									onClick={() => categoryChoosen(cat.id)}>
 										{cat.name}
 									</button>
 								);
@@ -50,6 +46,5 @@ const GratingPage = ({categoryChoosen}) => {
 		</div>
 	);
 };
-
 
 export default GratingPage;

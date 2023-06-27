@@ -242,11 +242,25 @@ width: fit-content;
   text-align: center;
   cursor:pointer;
   color: #F5F7FB;
-  background: #4D5B9E;
+  background-color: #4D5B9E;
   border-radius: 8px;
   padding: 8px 12px;
   border: none;
-  
+}
 
+.x-but-cat{
+width: fit-content;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 9px;
+  text-align: center;
+  cursor:pointer;
+  color: #eed306;
+  background-color: #0b0e1d;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: none;
 }
 

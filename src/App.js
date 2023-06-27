@@ -10,17 +10,17 @@ function App() {
 		setChooseCat(e);
 	};
 	
-
-console.log(chooseCat);
-
 	return (
 		<div className="App">
 			<img className="bg-top" src="./imagis/top.png" alt="bg" />
 			<img className="bg-bottom" src="./imagis/bottom.png" alt="bg" />
 			<BrowserRouter>
 				<Routes>
+
 					<Route path="/" element={<GratingPage  chooseCat={chooseCat} categoryChoosen = {categoryChoosen}/>} />
-					<Route path="/QuestPage" element={<QuestPage setChoosenCat = {setChooseCat} />} />
+
+					<Route path="/QuestPage" element={<QuestPage chooseCat={chooseCat} />} />
+				
 				</Routes>
 			</BrowserRouter>
 		</div>
